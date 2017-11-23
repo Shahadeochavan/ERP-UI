@@ -3,7 +3,7 @@ var erpApp = angular
 erpApp.config(function($locationProvider) {
 	$locationProvider.hashPrefix('');
 });
-erpApp.value('SERVER_URL', 'http://192.168.2.103:8080/ERP/');
+erpApp.value('SERVER_URL', 'http://localhost:8085/DSCRM/');
 
 
 
@@ -141,6 +141,28 @@ erpApp.config(function($routeProvider) {
 		data : {
 			loginRequired : true
 		}
+	}).when('/bankDetail', {
+		templateUrl : 'views/bankDetail.html',
+		data : {
+			loginRequired : true
+		}
+	
+	}).when('/applicant', {
+		templateUrl : 'views/applicant.html',
+		data : {
+			loginRequired : true
+		}
+	}).when('/viewProductPrice', {
+		templateUrl : 'views/ViewProductPrice.html',
+		data : {
+			loginRequired : true
+		}
+	
+	}).when('/clientProduct', {
+		templateUrl : 'views/clientProduct.html',
+		data : {
+			loginRequired : true
+		}
 	}).when('/productQualityCheck', {
 		templateUrl : 'views/productQualityCheck.html',
 		data : {
@@ -177,12 +199,6 @@ erpApp.config(function($routeProvider) {
 	}).when('/generateBOM',{
 		templateUrl : 'views/generateBom.html',
 		data :{
-			loginRequired : true
-		}
-			
-	}).when('/fileUpload', {
-		templateUrl : 'views/fileUpload.html',
-		data : {
 			loginRequired : true
 		}
 	}).when('/notification', {

@@ -22,7 +22,7 @@ erpApp.controller('userTypeCtrl',function($scope,$http, $mdDialog,SERVER_URL,$ro
 			};
 		$http(httpparams).then(function successCallback(response) {
 
-							$scope.data = response.data;
+							$scope.data = response.data.data;
 							$scope.UserTypes = response.data;
 							console.log('$scope.UserTypes' , $scope.UserTypes);
 							console.log(response);

@@ -21,7 +21,7 @@ erpApp.controller('notificationCtrl', function($scope,$http, $mdDialog,SERVER_UR
 				auth_token : Auth.getAuthToken()
 			};
 		$http(httpparams).then(function successCallback(response) {
-			$scope.notificationList=response.data;
+			$scope.notificationList=response.data.data;
 			console.log(response)
 			utils.hideProgressBar();
 		}, function errorCallback(response) {

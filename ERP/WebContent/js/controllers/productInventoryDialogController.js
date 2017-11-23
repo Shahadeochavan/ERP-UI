@@ -127,7 +127,7 @@ erpApp.controller('productInventoryDialogController', function($scope,$http, $md
 					auth_token : Auth.getAuthToken()
 				};
 			$http(httpparams).then(function successCallback(response) {
-				$scope.prducts = response.data;
+				$scope.prducts = response.data.data;
 				console.log(response);
 			}, function errorCallback(response) {
 				console.log("Error");

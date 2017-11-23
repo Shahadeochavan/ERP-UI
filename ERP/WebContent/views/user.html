@@ -2,7 +2,7 @@
 	<div class="erp-information" ng-init="populateUserList($event); flag=1">
 		<div class="tooltip">
 			<md-button class="md-raised md-primary add-new-btn"
-				ng-click="showAddNewUser($event);resetUserData()" type="reset">ADD
+				ng-click="showAddNewUser($event);resetUserData()" style="background-color:#85afb3" type="reset">ADD
 			NEW USER</md-button>
 			<span class="tooltiptext">Add new User here</span>
 		</div>
@@ -27,8 +27,8 @@
 				<td>{{(currentPage*pageSize) + ($index+1) }}</td>
 				<td>{{users.firstName}}</td>
 				<td>{{users.lastName}}</td>
-				<td>{{users.mobile}}</td>
-				<td>{{users.usertype.usertypeName}}</td>
+				<td>{{users.mobileNo}}</td>
+				<td>{{users.userTypeDTO.usertypeName}}</td>
 			<!-- 	<td>{{users.email}}</td> -->
 				<td style="text-align: center;"><md-button class="actionButton "
 						ng-click="showEditUser($event,$index)" style="" ng-init="flag=1">EDIT

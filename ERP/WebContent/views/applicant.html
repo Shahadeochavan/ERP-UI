@@ -1,0 +1,44 @@
+<div ng-controller="applicant">
+	<div class="erp-information">
+		<div>
+			<md-button class="md-raised md-primary add-new-btn"
+				ng-click="showAddNewPage($event);"
+				ng-init="populatePageList();flag=0" style="background-color:#85afb3">ADD NEW APPLICANT</md-button>
+		</div>
+		<md-input-container class="md-block" flex-gt-sm type="password">
+		<input type="text" ng-model="searchText" name="password"
+			placeholder="Search by client Name" class="search-text"> </md-input-container>
+		<h1 class="table-header">APPLICANT LIST</h1>
+
+
+		<table>
+			<tr>
+				<th>NO</th>
+				<th>DATE</th>
+				<th>APPLICANT Name</th>
+				<th>CLIENT</th>
+				<th>PRODUCT TYPE</th>
+				<th>PRODUCT NAME</th>
+				<th>VALIDITY</th>
+				<th>PRICE</th>
+			</tr>
+			<tr ng-repeat="applicant in applicants  | startFrom:currentPage*pageSize | limitTo:pageSize | filter:{ pageName: searchText }">
+				<td>{{(currentPage*pageSize) + ($index+1) }}</td>
+				<td>{{applicant.createDate}}</td>
+				<td>{{applicant.applicantName}}</td>
+				<td>{{applicant.client.companyname}}</td>
+				<td>{{applicant.product.productType}}</td>
+				<td>{{applicant.product.name}}</td>
+				<td>{{applicant.validity}}</td>
+				<td>{{applicant.price}}</td>
+			</tr>
+		</table>
+		 <md-dialog-actions layout="row" style="" class="paginationBtn"> <md-button
+		class="md-raised"
+		type="button" ng-disabled="currentPage == 0" ng-click="gotoPrevPage()">Previous Page</md-button> <md-button
+		class="md-raised" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="gotoNextPage()">Next Page</md-button>
+	</md-dialog-actions>
+		<div ng-show="isPagePresent">Currently there are no active
+			bank.Please add new Page.</div>
+	</div>
+</div>

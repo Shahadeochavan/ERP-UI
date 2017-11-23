@@ -1,7 +1,7 @@
 <div ng-controller="productOrderCtrl">
 <div class="erp-information">
 <div>
-    <md-button class="md-raised md-primary add-new-btn" ng-click="showAddNewProductOrder($event);" ng-init="populateProductOrderList();flag=0">ADD
+    <md-button class="md-raised md-primary add-new-btn" ng-click="showAddNewProductOrder($event);" ng-init="populateProductOrderList();flag=0" style="background-color:#85afb3">ADD
 			NEW PRODUCT ORDER</md-button>
 </div>
  <md-input-container class="md-block" flex-gt-sm type="password" style="margin-left:2%">
@@ -12,21 +12,29 @@
 			<tr>
 				<th>NO</th>
 				<th>CLIENT</th>
-				<th>DESCRIPTION</th>
-				<th>ORDER STATUS</th>
-				<th>ACTION</th>
+				<th>DATE</th>
+				<th>PRODUCT</th>
+				<th>QTY</th>
+				<th>RATE</th>
+				<th>TOTAL AMOUNT</th>
+				<th>RECEIVED AMOUNT</th>
+				<!-- <th>ACTION</th> -->
 			</tr>
 			<tr ng-repeat="productOrder in data | startFrom:currentPage*pageSize | limitTo:pageSize |  filter:{ companyname: searchText }" >
 				<td>{{(currentPage*pageSize) + ($index+1) }}</td>
-				<td>{{productOrder.client.companyname}}</td>
-				<td>{{productOrder.description}}</td>
-				<td>{{productOrder.status.name}}</td>
-				<td style="text-align: center;">
+				<td>{{productOrder.clientId.companyname}}</td>
+				<td>{{productOrder.createDate}}</td>
+				<td>{{productOrder.product.name}}</td>
+				<td>{{productOrder.quantity}}</td>
+				<td>{{productOrder.product.pricePerUnit}}</td>
+				<td>{{productOrder.totalAmount}}</td>
+				<td>{{productOrder.receivedAmount}}</td>
+			<!-- 	<td style="text-align: center;">
 				     <md-button class="actionButton"  ng-click="showEditProductOrder($event,$index)"  style="" ng-init="flag=1">EDIT</md-button>
 				<md-button class="actionButton"  ng-click="showConfirm($event,$index)"  style="">Remove</md-button>
 				
 				<md-button class="actionButton" ng-click="viewProductOrderrInformation($event,$index)"  style="">VIEW</md-button>
-				</td>
+				</td> -->
 			</tr>
 		</table>
 		 <md-dialog-actions layout="row" style="" class="paginationBtn"> <md-button

@@ -1,7 +1,7 @@
 <div ng-controller="userTypePageAssoCtrl">
 <div class="erp-information">
 <div>
-    <md-button class="md-raised md-primary" ng-click="showAddNewUserTypePage($event);" ng-init="populateuserTeypePageAsso();flag=0" style=" background-color: rgb(126, 137, 213);">ADD
+    <md-button class="md-raised md-primary" ng-click="showAddNewUserTypePage($event);" ng-init="populateuserTeypePageAsso();flag=0" style="background-color:#85afb3";">ADD
 			NEW USER TYPE PAGE</md-button>
 </div>
  <md-input-container class="md-block" flex-gt-sm type="password" style="margin-left:2%">
@@ -18,7 +18,7 @@
 			</tr>
 			<tr ng-repeat="userTypePage in data | startFrom:currentPage*pageSize | limitTo:pageSize ">
 				<td>{{(currentPage*pageSize) + ($index+1) }}</td>
-				<td>{{userTypePage.usertype.usertypeName}}</td>
+				<td>{{userTypePage.usertypeId.usertypeName}}</td>
 				<td>{{userTypePage.page.pageName}}</td>
 				<td>{{userTypePage.page.url}}</td>
 				

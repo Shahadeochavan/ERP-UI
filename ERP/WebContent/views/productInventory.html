@@ -3,7 +3,7 @@
 		<div>
 			<md-button class="md-raised md-primary add-new-btn"
 				ng-click="showAddNewProductInventory($event)"
-				ng-init="populateProductInventoryList();flag=0">ADD NEW
+				ng-init="populateProductInventoryList();flag=0" style="background-color:#85afb3">ADD NEW
 			PRODUCT INVENTORY</md-button>
 		</div>
 		<md-input-container class="md-block" flex-gt-sm type="password" style="margin-left:2%">
@@ -15,14 +15,12 @@
 				<th>NO</th>
 				<th>PRODUCT</th>
 				<th>AVAILBLE QUANTITY</th>
-				<!-- <th>NAME</th> -->
-				<!-- <th>RACK NUMBER</th> -->
 				<th>ACTION</th>
 			</tr>
 			<tr ng-repeat="productInventory in data.data | startFrom:currentPage*pageSize | limitTo:pageSize ">
 				<td>{{(currentPage*pageSize) + ($index+1) }}</td>
-				<td>{{productInventory.product.partNumber}}</td>
-				<td>{{productInventory.quantityavailable}}</td>
+				<td>{{productInventory.productId.name}}</td>
+				<td>{{productInventory.quantityAvailable}}</td>
 				<!-- <td>{{productInventory.racknumber}}</td> -->
 				<td style="text-align: center;"><md-button class="actionButton "
 						ng-click="showEditProductInventory($event,$index)"

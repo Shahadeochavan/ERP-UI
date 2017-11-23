@@ -22,7 +22,7 @@ erpApp.controller('notificationUserAssociationCtrl', function($scope,$http, $mdD
 				auth_token : Auth.getAuthToken()
 			};
 		$http(httpparams).then(function successCallback(response) {
-			$scope.notificationUserAssociationList=response.data;
+			$scope.notificationUserAssociationList=response.data.data;
 			console.log(response)
 			console.log("$scope.notificationUserAssociationList :" ,$scope.notificationUserAssociationList);
 			utils.hideProgressBar();

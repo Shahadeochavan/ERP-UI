@@ -19,7 +19,7 @@ erpApp.controller('userTypePageAssoCtrl', function($scope,$http, $mdDialog,SERVE
 				auth_token : Auth.getAuthToken()
 			};
 		$http(httpparams).then(function successCallback(response) {
-				$scope.data = response.data;
+				$scope.data = response.data.data;
 				$scope.isVendorInformation();
 				$scope.userTypePageAssociations = response.data;
 				$mdDialog.hide();

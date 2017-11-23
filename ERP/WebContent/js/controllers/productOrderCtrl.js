@@ -22,10 +22,10 @@ erpApp.controller('productOrderCtrl', function($scope,$http, $mdDialog,SERVER_UR
 			        };
 		
 					$http(httpparams).then( function successCallback(response) {
-								$scope.data = response.data;
-								$scope.productOrders = response.data;
+								$scope.data = response.data.data;
+								$scope.productOrders = response.data.data;
 								console.log(response);
-								$scope.isProductOrderInformation();
+								//$scope.isProductOrderInformation();
 								utils.hideProgressBar();
 							},
 							function errorCallback(response) {
@@ -34,10 +34,10 @@ erpApp.controller('productOrderCtrl', function($scope,$http, $mdDialog,SERVER_UR
 								utils.hideProgressBar();
 			});
 	};
-	
+	/*
 	$scope.isProductOrderInformation = function() {
 		$scope.isProductOrderPresent = $scope.data.length === 0 ? true : false;
-	};
+	};*/
 	
 	$scope.showAddNewProductOrder = function(ev) {
 		 $rootScope.isAddButtonDisplay=true;

@@ -21,7 +21,7 @@ erpApp.controller('pageCtrl', function($scope,$http, $mdDialog,SERVER_URL,$rootS
 				auth_token : Auth.getAuthToken()
 			};
 		$http(httpparams).then(function successCallback(response) {
-			$scope.data = response.data;
+			$scope.data = response.data.data;
 			$scope.pages=response.data;
 			$scope.isPageformation();
 			console.log(response)

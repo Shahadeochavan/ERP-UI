@@ -24,8 +24,8 @@ erpApp
 								auth_token : Auth.getAuthToken()
 						};
 						$http(httpparams).then(function successCallback(response) {
-							$scope.data = response.data;
-							$scope.clients = response.data;
+							$scope.data = response.data.data;
+							$scope.clients = response.data.data;
 							$scope.isClientInfirmation();
 							console.log(response);
 							utils.hideProgressBar();

@@ -1,0 +1,34 @@
+<div ng-controller="productCtrl">
+	<div class="erp-information">
+		<div>
+			<md-button class="md-raised md-primary add-new-btn"
+				ng-click="showAddNewProduct($event);"
+				ng-init="populteProductList();flag=0"style="display: none;"></md-button>
+		</div>
+		<h1 class="table-header">PRODUCT LIST</h1>
+		<table>
+			<tr>
+				<th>NO</th>
+				<th>PRODUCT NAME</th>
+				<th>PRODUCT TYPE</th>
+				<th>PRODUCT VALIDITY</th>
+				<th>Product Price(₹)</th>
+			</tr>
+			<tr ng-repeat="products in data | startFrom:currentPage*pageSize | limitTo:pageSize  |  filter:{ name: searchText }">
+				<td>{{(currentPage*pageSize) + ($index+1) }}</td>
+				<td>{{products.name}}</td>
+				<td>{{products.productType}}</td>
+				<td>{{products.productValidity}}</td>
+				<td>{{products.pricePerUnit}}</td>
+
+		</table>
+		<md-dialog-actions layout="row" style="" class="paginationBtn"> <md-button
+		class="md-raised"
+		type="button" ng-disabled="currentPage == 0" ng-click="gotoPrevPage()">Previous Page</md-button> <md-button
+		class="md-raised" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="gotoNextPage()">Next Page</md-button>
+	</md-dialog-actions>
+		<div ng-show="isProductPresent" class="active-information">Currently there are no active
+			products.Please add new product.</div>
+
+	</div>
+</div>

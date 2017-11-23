@@ -1,6 +1,6 @@
 <md-dialog class="statusInfo">
 <form name="productInventoryInformation" novalidate>
-	<md-toolbar>
+	<md-toolbar style="background-color:#85afb3">
 	<div class="md-toolbar-tools">
 		<h2>{{information}}</h2>
 		<span flex></span>
@@ -42,7 +42,7 @@
 			ng-disabled="isProductreadOnly" ng-required="true" required
 			ng-init="getProduct()"> <md-option
 			ng-repeat="product in prducts" ng-value="product.id">
-		{{product.partNumber}} </md-option> </md-select>
+		{{product.name}} </md-option> </md-select>
 		<div ng-messages="productInventoryInformation.product.$error">
 			<div ng-message="required">Please Select Product</div>
 		</div>

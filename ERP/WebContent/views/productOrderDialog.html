@@ -1,7 +1,7 @@
 <md-dialog class="statusInfo" ng-init="getProductOrderId()">
   <form name="productOrderInformation"  novalidate>
   
-    <md-toolbar>
+    <md-toolbar style="background-color:#85afb3">
       <div class="md-toolbar-tools">
         <h2>{{information}}</h2>
         <span flex></span>
@@ -23,21 +23,13 @@
           </div>
           </md-input-container>
      </div>
-          <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm>
-            <label  class="input-filed-label">INVOICE NO</label>
-            <input type="text" ng-model="productOrder.invoiceNo"  required name="invoiceNo" ng-disabled="isReadOnly"  >
-             <div ng-messages="productOrderInformation.invoiceNo.$error">
-            <div ng-message="required">Please enter Invoice No</div>
-          </div>
-          </md-input-container>
-     </div>
+     	
            <div layout-gt-sm="row">
                <md-input-container class="drop-down">
           <label>CLIENT*</label>
-          <md-select ng-model="productOrder.client.id" name="client"  ng-disabled="isClientReadOnly" ng-required="true" required ng-init="getClient()">
-            <md-option ng-repeat="client in clients" ng-value="client.id" >
-               {{client.companyname}}
+          <md-select ng-model="productOrder.clientId" name="client"  ng-disabled="isClientReadOnly" ng-required="true" required ng-init="getClient()" ng-change="getProducts()">
+            <md-option ng-repeat="clientId in clientProducAsso" ng-value="clientId" >
+               {{clientId.companyName}}
             </md-option>
           </md-select>
           <div ng-messages="productOrderInformation.client.$error">
@@ -45,76 +37,69 @@
               </div>
         </md-input-container>
            </div>
+    
            
-           <div layout-gt-sm="row">
-               <md-input-container class="md-block" flex-gt-sm type="password">
-              <label class="input-filed-label">DATE OF DELIVERY[MM/DD/YYYY]*</label>
-              
-              <input type="date" placeholder="Enter date of birth" ng-model="productOrder.expecteddeliveryDate" ng-change="orderDateValidation(productOrder.expecteddeliveryDate)"  name="expecteddeliveryDate" required ng-disabled="isReadOnly">
-              <div ng-messages="productOrderInformation.expecteddeliveryDate.$error">
-                 <div ng-message="required">Please Enter Expected Delivery Date</div>
-                 <!-- <div ng-message="customeMsg">{{msg}}</div> -->
-              </div>
-               <div ng-show=" productOrderInformation.expecteddeliveryDate.$error.customeMsg" class="error-msg">{{msg}}</div>
-         </md-input-container>  
-           </div>
-        
-        <h2>Product Order List</h2>
-        <table>
-          <tr>
-            <th>PRODUCT</th>
-            <!-- <th>DESCRIPTION</th> -->
-            <th>QUANTITY</th>
-            <th>ACTION</th>
-          </tr>
-          <tr ng-repeat="orderProductAssociation in orderproductassociations">
-          <td>{{orderProductAssociation.product.partNumber}}</td>
-          <!-- <td>{{orderProductAssociation.product.description}}</td> -->
-          <!-- <td>{{orderProductAssociation.quantity}}</td> -->
-          <td><input type="number" ng-value="{{orderProductAssociation.quantity}}" name="quantity1{{$index}}" ng-model="orderProductAssociation.quantity"  min="1">
-             <!-- <div ng-messages="productOrderInformation.quantity.$error">
-                  <div ng-message ="customMsg" class="error-msg">{{updateQuantityMsg}}</div>
-             </div> -->
-              <div ng-show="productOrderInformation.quantity1{{$index}}.$error.min"
-				class="error-msg">Quantity should be greater then 0</div>
-          </td>
-          <td><button type="button"  ng-click="deleteProduct($index)" class="multiple-added-delete">Delete</button></td>
-          </tr>
-         
-          <tr ng-repeat="orderProductAssociation in productOrderList">
-          <td  style="background: white;">{{orderProductAssociation.product.partNumber}}</td>
-         <!--  <td  style="background: white;">{{orderProductAssociation.product.description}}</td> -->
-          <td  style="background: white;"><input type="number" ng-value="{{orderProductAssociation.quantity}}" ng-model="orderProductAssociation.quantity" ng-disabled="isReadOnly" name="quantity2{{$index}}" min="1">
-               <div ng-show="productOrderInformation.quantity2{{$index}}.$error.min"
-				class="error-msg">Quantity should be greater then 0</div>
-          </td>
-          <td  style="background: white;"><button type="button" ng-click="deleteProduct($index)" ng-disabled="isReadOnly" class="multiple-added-delete">Delete</button></td>
-          </tr>
-        </table>
-        <div layout-gt-sm="row" ng-show="isProductOrderAdd" >
-           <md-input-container>
-          <label style="color: black;">PRODUCT*</label>
-          <md-select ng-model="orderProductAssociation.product" name="product" value="product.id"  ng-disabled="isReadOnly"  ng-init="getProducts()">
-            <md-option ng-repeat="product in products" ng-value="product" >
-               {{product.partNumber}}
+                 <div layout-gt-sm="row">
+               <md-input-container class="drop-down">
+          <label>PRODUCT*</label>
+          <md-select ng-model="productOrder.product" name="product"  ng-disabled="isClientReadOnly" ng-required="true" required>
+            <md-option ng-repeat="product in productList" ng-value="product" >
+               {{product.product.name}}
             </md-option>
           </md-select>
           <div ng-messages="productOrderInformation.product.$error">
-             <div ng-message="message">{{message}}</div>
-          </div>
+                 <div ng-message="required">Please Select Product</div>
+              </div>
         </md-input-container>
-		<md-input-container class="md-block" flex-gt-sm type="password">
-            <label class="input-filed-label">QUANTITY</label>
-            <input type="number" ng-model="orderProductAssociation.quantity"   name="quantity"  ng-disabled="isReadOnly" ng-maxlength="8" min="1">
-            <div ng-messages="productOrderInformation.quantity.$error">
-                 <div ng-message="maxlength">You can enter only 8 digit</div>
-            </div>
-            <div ng-show="productOrderInformation.quantity.$error.min"
-				class="error-msg">Quantity should be greater than 0</div>
+           </div>
+           
+                  
+           <div layout-gt-sm="row">
+			<md-input-container class="md-block" flex-gt-sm>
+			<label class="input-filed-label">QTY</label> <input
+				type="number" ng-model="productOrder.quantity" required
+				name="quantity" ng-disabled="isReadOnly"
+				 ng-change="calculateTotalPrice(productOrder.quantity,productOrder.product.pricePerUnit)">
+			<div
+				ng-messages="productOrderInformation.quantity.$error">
+				<div ng-message="required">Please enter quantity</div>
+			</div>
+			</md-input-container>
+		</div>
+		
+		
+		<md-input-container class="md-block" flex-gt-sm>
+			<label class="input-filed-label">TOTAL AMOUNT</label> <input
+				type="number" ng-model="totalAmount"
+				name="totalAmount" ng-disabled="isPriceReadOnly" value="{{totalAmount}}">
+			<div ng-messages="productOrderInformation.totalAmount.$error">
+				<div ng-message="required">Please enter total amount</div>
+			</div>
+			</md-input-container>
+           
+              <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label  class="input-filed-label">RECEIVED AMOUNT</label>
+            <input type="number" ng-model="productOrder.receivedAmount"  required name="receivedAmount" ng-disabled="isReadOnly" ng-minlength="1" >
+             <div ng-messages="productOrderInformation.receivedAmount.$error">
+            <div ng-message="required">Please enter Receied amount</div>
+            <div ng-message="minlength">Receied amount should be minimum 1 number</div>
+          </div>
           </md-input-container>
-           <button type="button" class="added-multiple" ng-click="addOrderProductAssociation()" ng-disabled="!(!!orderProductAssociation.product && !!orderProductAssociation.quantity)">Add Product</button>
-        </div>
-         </div>
+           </div>
+           <div layout-gt-sm="row">
+               <md-input-container class="md-block" flex-gt-sm type="password">
+              <label class="input-filed-label">DATE OF CREATE[MM/DD/YYYY]*</label>
+              
+              <input type="date" placeholder="Enter date of birth" ng-model="productOrder.createDate" ng-change="orderDateValidation(productOrder.createDate)"  name="createDate" required ng-disabled="isReadOnly">
+              <div ng-messages="productOrderInformation.createDate.$error">
+                 <div ng-message="required">Please Enter Expected Delivery Date</div>
+                 <!-- <div ng-message="customeMsg">{{msg}}</div> -->
+              </div>
+               <div ng-show=" productOrderInformation.createDate.$error.customeMsg" class="error-msg">{{msg}}</div>
+         </md-input-container>  
+           </div>
+
     </md-dialog-content>
     <md-dialog-actions layout="row">
       <md-button class="md-raised" ng-click="submitInformation(productOrderInformation.$valid,$event)" type="submit" ng-disabled="isReadOnly" >SAVE</md-button>

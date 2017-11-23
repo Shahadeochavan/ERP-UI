@@ -1,8 +1,7 @@
-erpApp.controller('clientDialogCtrl',function($scope, $mdDialog, client,
-		$location, $rootScope,SERVER_URL,flag,action,information,Auth,$http,utils){
+erpApp.controller('bankDetailDialogController', function($scope,$http, $mdDialog,SERVER_URL,$rootScope,$mdToast,Auth,utils,page,action,flag,information) {
 	$scope.isReadOnly = action;
 	$scope.flag = flag;
-	$scope.client = client;
+	$scope.page = page;
 	$scope.information = information;
 	$scope.hide = function() {
 		console.log('hide DialogController');
@@ -17,28 +16,28 @@ erpApp.controller('clientDialogCtrl',function($scope, $mdDialog, client,
 		$mdDialog.hide(answer);
 	};
 
-	$scope.saveClient = function(ev) {
+	$scope.savePageInformation = function(ev) {
 		var data = {
-				companyName: $scope.client.companyName,
-				description: $scope.client.description,
-				address: $scope.client.address,
-				emailId: $scope.client.emailId,
-				contactNumber:$scope.client.contactNumber ,
-				contactPersonName: $scope.client.contactPersonName
+				bankName : $scope.bankDetail.bankName,
+				accountNumber : $scope.bankDetail.accountNumber,
+				branchName : $scope.bankDetail.branchName,
+				ifscCoe : $scope.bankDetail.ifscCoe,
+				description : $scope.bankDetail.description
 		};
 		var httpparams = {};
 		if ($scope.flag == 0) {
+			console.log($scope.user);
 			console.log($scope.data);
 			httpparams.method = 'post';
-			httpparams.url = SERVER_URL + "client/create";
+			httpparams.url = SERVER_URL + "bankdetail/create";
 			httpparams.headers = {
 					auth_token : Auth.getAuthToken()
 				};
 		} else {
-			console.log($scope.client);
-			data.id = $scope.client.id;
+			console.log($scope.unit);
+			data.id = $scope.bankDetail.id;
 			httpparams.method = 'put';
-			httpparams.url = SERVER_URL + "client/update";
+			httpparams.url = SERVER_URL + "bankdetail/update";
 			httpparams.headers = {
 					auth_token : Auth.getAuthToken()
 				};
@@ -52,38 +51,30 @@ erpApp.controller('clientDialogCtrl',function($scope, $mdDialog, client,
 							if(data.data.code === 0){
 								console.log(data.data.message);
 								$rootScope.$emit(
-										"saveClientError", {});
+										"saveUnitError", {});
 								console.log(data);
 								$scope.hide();
 								utils.showToast('Something went worng. Please try again later.');
-							}else if(data.data.code === 2){
-								$rootScope.$emit(
-										"saveClientError", {});
-								$scope.message = data.data.message;
-								utils.showToast(data.data.message);
-							}
-							else{
-								console.log(data.data.message);
+							}else{
 								$scope.displayProgressBar = false;
-								utils.showToast('Client Information saved successfully.');
-								$rootScope.$emit("CallPopulateClientList",{});
+								utils.showToast(data.data.message);
+								$rootScope.$emit("CallPopulatePageList",{});
 							}
 						},
 						function errorCallback(data) {
 							$rootScope.$emit(
-									"saveClientError", {});
+									"saveUnitError", {});
 							console.log(data);
 							$scope.hide();
 							utils.showToast('Something went worng. Please try again later.');
 						});
 	};
 
-	$scope.submitClientInformation = function(isvaliduser,$event) {
+	$scope.submitPageInformation = function(isvaliduser,$event) {
 		if (isvaliduser) {
-			$scope.saveClient(event);
+			$scope.savePageInformation($event)
 		} else {
 			console.log('its else block');
-			 utils.scrollToTop();
 			utils.showToast('Please fill all required information');
 		}
 	};

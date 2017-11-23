@@ -3,7 +3,7 @@
 		<div>
 			<md-button class="md-raised md-primary add-new-btn"
 				ng-click="showAddNewProduct($event);"
-				ng-init="populteProductList();flag=0">ADD NEW PRODUCT</md-button>
+				ng-init="populteProductList();flag=0"style="background-color:#85afb3">ADD NEW PRODUCT</md-button>
 		</div>
 		<md-input-container class="md-block" flex-gt-sm type="password" style="margin-left:2%">
 		<input type="text" ng-model="searchText" name="password"
@@ -13,23 +13,54 @@
 			<tr>
 				<th>NO</th>
 				<th>NAME</th>
-				<th>PART NUMBER</th>
+				<th>PRODUCT TYPE</th>
+				<th>VALIDITY</th>
+				<th>PRICE PER UNIT</th>
 				<th>DESCRIPTION</th>
 				<th>ACTION</th>
 			</tr>
 			<tr ng-repeat="products in data | startFrom:currentPage*pageSize | limitTo:pageSize  |  filter:{ name: searchText }">
 				<td>{{(currentPage*pageSize) + ($index+1) }}</td>
 				<td>{{products.name}}</td>
-				<td>{{products.partNumber}}</td>
+				<td>{{products.productType}}</td>
+				<td>{{products.productValidity}}</td>
+				<td>{{products.pricePerUnit}}</td>
 				<td>{{products.description}}</td>
+				<td>
+				   <div class="lock-size" layout="row" layout-align="center center" >
+<md-fab-speed-dial md-open="isOpen" md-direction="{{selectedDirection}}" ng-class="selectedMode" >
+       	<md-fab-trigger>
+         <md-button class="md-fab" style="background-color: #21b799">
+           <i class="material-icons">more_vert</i>
+         </md-button>
+       	</md-fab-trigger>
 
-				<td style="text-align: center;"><md-button class="actionButton"
+       <md-fab-actions>
+         <md-button class="md-fab md-raised md-mini actionButton" ng-click="viewProductInformation($event,$index)">
+           <i class="material-icons">launch</i>
+           <md-tooltip md-visible="demo.showTooltip">View</md-tooltip>
+         </md-button>
+         <md-button class="md-fab md-raised md-mini actionButton"  ng-click="showEditProduct($event,$index)" 
+ng-init="flag=1"  >
+           <i class="material-icons">mode_edit</i>
+           <md-tooltip md-visible="demo.showTooltip">Edit</md-tooltip>
+         </md-button>
+         <md-button class="md-fab md-raised md-mini actionButton"   ng-click="showConfirm($event,$index)">
+           <i class="material-icons">delete</i>
+           <md-tooltip md-visible="demo.showTooltip">Delete</md-tooltip>
+         </md-button>
+       </md-fab-actions>
+     	</md-fab-speed-dial>	
+</div>
+				</td>
+
+				<!-- <td style="text-align: center;"><md-button class="actionButton"
 						ng-click="showEditProduct($event,$index)" ng-init="flag=1" style="">EDIT</md-button>
 					<md-button class="actionButton" ng-click="showConfirm($event,$index)" style="">Remove</md-button>
 
 					<md-button class="actionButton"
 						ng-click="viewProductInformation($event,$index)" style="">VIEW</md-button>
-				</td>
+				</td> -->
 
 			</tr>
 		</table>

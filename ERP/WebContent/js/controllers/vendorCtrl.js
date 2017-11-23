@@ -21,7 +21,7 @@ erpApp.controller('vedorCtrl', function($scope,$http, $mdDialog,SERVER_URL,$root
 				auth_token : Auth.getAuthToken()
 			};
 		$http(httpparams).then(function successCallback(response) {
-				$scope.data = response.data;
+				$scope.data = response.data.data;
 				$scope.isVendorInformation();
 				$scope.vendorUsers = response.data;
 				utils.hideProgressBar();

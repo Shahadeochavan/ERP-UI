@@ -1,0 +1,72 @@
+<md-dialog aria-label="Mango (Fruit)">
+<form name="clientProductAsso" novalidate>
+
+	<md-toolbar style="background-color:#85afb3">
+	<div class="md-toolbar-tools">
+		<h2>{{title}}</h2>
+		<span flex></span>
+		<md-button class="md-icon-button" ng-click="cancel()"> <md-icon>&#10006;</md-icon>
+		</md-button>
+	</div>
+	</md-toolbar>
+
+	<md-dialog-content>
+	<div class="md-dialog-content">
+
+		<div>
+			<md-input-container style="width:100%"> <label>PRODUCT*</label> <md-select ng-model="clientProductAssociation.product.id"
+				name="product" value="product.id" ng-disabled="isReadOnly"
+				ng-init="getProduts()" required> <md-option
+				ng-repeat="product in products" ng-value="product.id">
+			{{product.name}} </md-option> </md-select>
+			<div ng-messages="clientProductAsso.product.$error">
+				<div ng-message="required">Please select product</div>
+			</div>
+			</md-input-container>
+		</div>
+		
+		<div class="ui-msg" ng-show="isRawMaterial">Please create product</div>
+
+		<md-input-container class="drop-down"> <label
+			style="color: black;">CLIENT *</label> <md-select
+			ng-model="clientProductAssociation.client.id" name="client"
+			value="client.id" ng-disabled="isReadOnly" ng-init="getClient()"
+			required> <md-option ng-repeat="client in clients"
+			ng-value="client.id"> {{client.companyName}} </md-option> </md-select>
+		<div ng-messages="clientProductAsso.client.$error">
+			<div ng-message="required">Please select Clientr</div>
+		</div>
+		</md-input-container>
+		<div class="ui-msg" ng-show="isVendor">Please Create Clientr</div>
+	</div>
+	<div layout-gt-sm="row">
+
+			<md-input-container class="md-block" flex-gt-sm>
+			<label class="input-filed-label">PRICE PER UNIT</label> <input
+				type="number" ng-model="clientProductAssociation.pricePerUnit"
+				value="clientProductAssociation.pricePerUnit" required name="pricePerUnit"
+				ng-disabled="isReadOnly" ng-maxlength="6" min="1">
+			<div ng-messages="clientProductAsso.pricePerUnit.$error">
+				<div ng-message="required">Please Enter Price Per Unit</div>
+				<div ng-message="maxlength">You can enter only 6 digit</div>
+				<div ng-message="min">Price should be greater then 0</div>
+			</div>
+			</md-input-container>
+		</div>
+	</md-dialog-content>
+
+	<md-dialog-actions layout="row"> <md-button
+		class="md-raised"
+		ng-click="submitRMVendorAssociationInformation(clientProductAsso.$valid,$event)"
+		type="submit" ng-disabled="isReadOnly" >SAVE</md-button> <md-button
+		class="md-raised" ng-click="answer('not useful')">CANCEL</md-button>
+	</md-dialog-actions>
+
+</form>
+</md-dialog>
+
+
+
+
+
+

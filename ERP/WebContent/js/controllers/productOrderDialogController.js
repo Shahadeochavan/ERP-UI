@@ -9,7 +9,7 @@ erpApp.controller('productOrderDialogCtrl', function($scope,$http, $mdDialog,SER
     $rootScope.isAddButtonDisplay=true;
     $scope.orderproductassociations=[];
     $scope.orderProductAssociation={};
-    $scope.productOrder.expecteddeliveryDate = new Date($scope.productOrder.expecteddeliveryDate);
+    $scope.productOrder.createDate = new Date($scope.productOrder.createDate);
    
     $scope.hide = function() {
       $mdDialog.hide();
@@ -27,14 +27,17 @@ erpApp.controller('productOrderDialogCtrl', function($scope,$http, $mdDialog,SER
     	var data = {
     			 orderproductassociations : $scope.orderproductassociations,
     			 description:$scope.productOrder.description,
-    			 invoiceNo:$scope.productOrder.invoiceNo,
-    			 expecteddeliveryDate:$scope.productOrder.expecteddeliveryDate ,
-    			  client:$scope.productOrder.client.id
+    			 quantity:$scope.productOrder.quantity,
+    			 totalAmount:$scope.totalAmount,
+    			 receivedAmount:$scope.productOrder.receivedAmount,
+    			 createDate:$scope.productOrder.createDate ,
+    			  clientId:$scope.productOrder.clientId.id,
+    			  product:$scope.productOrder.product.id
 		};
     	var httpparams = {};
     	if($scope.flag === 0){
     		httpparams.method = 'post';
- 			httpparams.url = SERVER_URL + "productorder/createmultiple";
+ 			httpparams.url = SERVER_URL + "productorder/createMultiple";
  			httpparams.headers = {
  					auth_token : Auth.getAuthToken()
  			};
@@ -82,7 +85,7 @@ erpApp.controller('productOrderDialogCtrl', function($scope,$http, $mdDialog,SER
 		}
 	};
     
-	 $scope.getProducts=function() {
+	 /*$scope.getProducts=function() {
 		 var httpparams = {};
 			httpparams.method = 'GET';
 			httpparams.url = SERVER_URL + "product/list";
@@ -90,14 +93,14 @@ erpApp.controller('productOrderDialogCtrl', function($scope,$http, $mdDialog,SER
 					auth_token : Auth.getAuthToken()
 				};
 		 $http(httpparams).then(function successCallback(response) {
-				$scope.products = response.data;
+				$scope.products = response.data.data;
 				console.log(response);
 			}, function errorCallback(response) {
 				console.log("Error");
 			});
-	    };
+	    };*/
 	    
-	    $scope.getClient=function(){
+	   /* $scope.getClient=function(){
 	    	var httpparams = {};
 			httpparams.method = 'GET';
 			httpparams.url = SERVER_URL + "client/list";
@@ -105,11 +108,51 @@ erpApp.controller('productOrderDialogCtrl', function($scope,$http, $mdDialog,SER
 					auth_token : Auth.getAuthToken()
 				};
 		 $http(httpparams).then(function successCallback(response) {
-				$scope.clients = response.data;
+				$scope.clients = response.data.data;
 				console.log(response);
 			}, function errorCallback(response) {
 				console.log("Error");
 			});
+	    };*/
+	    
+	    $scope.getClient=function(){
+	    	var httpparams={};
+	    	httpparams.method = 'GET';
+	    	httpparams.url = SERVER_URL + "client/list";
+	    	httpparams.headers = {
+					auth_token : Auth.getAuthToken()
+				};
+		 $http(httpparams).then(function successCallback(response) {
+				$scope.clientProducAsso = response.data.data;
+				console.log("$scope.clientProducAsso:",$scope.clientProducAsso)
+			}, function errorCallback(response) {
+				console.log("Error");
+			});
+	    };
+	    
+	    $scope.getProducts = function(){
+	    	var httpparams = {};
+			httpparams.method = 'GET';
+			httpparams.url = SERVER_URL + "clientProducAsso/ProductList/" + $scope.productOrder.clientId.id;
+			httpparams.headers = {
+					auth_token : Auth.getAuthToken()
+				};
+		 $http(httpparams).then(function successCallback(response) {
+				$scope.productList = response.data.data;
+				console.log("$scope.productList:",$scope.productList);
+				console.log(response);
+			}, function errorCallback(response) {
+				console.log("Error");
+			});
+	    }
+	    
+	    
+	    $scope.calculateTotalPrice = function(quantity,pricePerUnit){
+	    	console.log("productOrder.quantity:",quantity);
+	    	console.log("clientProducAsso:" ,$scope.clientProducAsso);
+	    	console.log("pricePerUnit",pricePerUnit);
+	    	$scope.totalAmount = pricePerUnit * quantity;
+	    	console.log("$scope.totalPrice:",$scope.totalAmount);
 	    };
 	    
 	    $scope.addOrderProductAssociation = function(){

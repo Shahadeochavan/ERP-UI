@@ -9,6 +9,17 @@ erpApp.controller('productCtrl', function($scope, $http, $mdDialog, $mdToast, $r
 		$scope.showAddNewProduct();
 	});
 	
+	 $scope.topDirections = ['left', 'up'];
+	 $scope.bottomDirections = ['down', 'right'];
+
+	 $scope.isOpen = false;
+
+	 $scope.availableModes = ['md-fling', 'md-scale'];
+	 $scope.selectedMode = 'md-scale';
+
+	 $scope.availableDirections = ['up', 'down', 'left', 'right'];
+	 $scope.selectedDirection = 'right';
+	
 	$scope.populteProductList=function(){
 		 $scope.currentPage = 0;
 	     $scope.pageSize = 15;
@@ -20,8 +31,8 @@ erpApp.controller('productCtrl', function($scope, $http, $mdDialog, $mdToast, $r
 				auth_token : Auth.getAuthToken()
 			};
 		$http(httpparams).then(function successCallback(response) {
-			$scope.data = response.data;
-			$scope.products = response.data;
+			$scope.data = response.data.data;
+			$scope.products = response.data.data;
 			$scope.isProductInformation();
 			console.log(response);
 			utils.hideProgressBar();

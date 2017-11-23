@@ -39,7 +39,7 @@ body{
 .erp-headder
 {
 	display: flex;
-	background-color:  #106CC8;
+	background-color:  #808080;
 	padding-top: 6px;
 	padding-left: 6px;
 	padding-bottom: 3px;
@@ -138,7 +138,7 @@ div.erp-menu:ACTIVE{
 }
 .erp-menubar
 {
-	background-color:  #106CC8;
+	background-color:  #808080;
 	width: 20%;
 	color: white;
 	font-weight: bold;
@@ -151,6 +151,7 @@ div.erp-menu:ACTIVE{
     display: inline-block;
     position: fixed;
     overflow-x: hidden;
+        margin-top: -30px;
 }
 .erp-menubar li
 {
@@ -168,7 +169,7 @@ div.erp-menu:ACTIVE{
 .erp-menubar a:HOVER{
 	color: white;
 	text-decoration: none;
-	background-color: #267ED5;
+	background-color: #808080;
 }
 .erp-menu:HOVER
 {
@@ -178,7 +179,7 @@ div.erp-menu:ACTIVE{
 	color: white;
 	font-weight: bold;
 	font-size: 15px;
-	background-color: #267ED5;
+	background-color: #808080;
 }
 
 .erp-menu
@@ -189,7 +190,7 @@ div.erp-menu:ACTIVE{
 	color: white;
 	font-weight: bold;
 	font-size: 15px;
-	background-color: rgb(25, 138, 234);
+	background-color: #808080;
 	
 }
 
@@ -201,7 +202,7 @@ div.erp-menu:ACTIVE{
 	color: white;
 	font-weight: bold;
 	font-size: 15px;
-	background-color: #267ED5;
+	background-color: #808080;
 }
 .erp-information
 {
@@ -258,10 +259,11 @@ table {
 td, th {
     border: 1px solid rgba(57, 73, 171, 0.48);
     text-align: left;
-    padding: 10px;
+    padding: 20px;
     font-size: 13px;
     color: black;
 	background: rgb(230, 230, 230);
+	text-align-last: center;
 }
 
 td th :HOVER{
@@ -381,7 +383,7 @@ th
 	width: 35%;
 	height: 100%;
 	/* padding-left: 35%; */
-	padding-top: 10%;
+	padding-top: -18%;
 }
 
 .erp-info{
@@ -525,7 +527,7 @@ th
  .table-header
  {
      text-align: center;
-     background: #03A9F4;
+     background: #85afb3;;
     color: white;
     padding: 12px;
     font-weight: 500;
@@ -536,7 +538,7 @@ th
  }
  
  th{
- 	background-color: #03A9F4;
+ 	background-color: #85afb3;;
  	text-align: center;
  	padding-top: 12px;
     padding-bottom: 12px;
@@ -575,7 +577,7 @@ th
 	padding-left: 30px;
 	color: white;
 	font-weight: 500;
-    border-bottom: solid 0.1px rgb(121,134,203);
+    border-bottom: solid 0.1px RGB(128, 128, 128);
  }
  .company-information
  {
@@ -815,7 +817,7 @@ margin: 15px 28px;
 }
 
 .actionButton{
-	background: rgba(63, 81, 181, 0.72);
+	background: #85afb3;
 	color: white;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }

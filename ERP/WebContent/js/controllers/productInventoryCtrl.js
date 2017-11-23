@@ -23,7 +23,7 @@ erpApp.controller('productInventoryCtrl', function($scope,$http, $mdDialog,SERVE
 		
 		$http(httpparams).then(function successCallback(response) {
 				$scope.data = response.data;
-				$scope.productInventorys = response.data.data;
+				$scope.productInventorys = response.data;
 				$scope.isProductInventoryinformation();
 				console.log(response);
 				utils.hideProgressBar();

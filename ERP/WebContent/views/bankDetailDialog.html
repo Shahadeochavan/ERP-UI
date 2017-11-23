@@ -8,27 +8,27 @@
 			>&#10006;</md-icon>
 		</md-button>
 	</div>
-	</md-toolbar>
+	</md-toolbar style="background-color:#85afb3">
 	<md-dialog-content>
 	<div class="md-dialog-content">
 
 		<div layout-gt-sm="row">
 			<md-input-container class="md-block" flex-gt-sm>
-			<label class="input-filed-label">MENU</label> <input type="text"
-				ng-model="page.menu" required name="menu" ng-disabled="isReadOnly" limit-to="255" ng-minlength="2" ng-maxlength="255">
-			<div ng-messages="pageInformation.menu.$error">
-				<div ng-message="required">Please enter Menu</div>
-				<div ng-message="minlength">Menu should be minimum 2 character</div>
-				<div ng-message="maxlength">Menu should be maximum 255 character</div>
+			<label class="input-filed-label">BANK NAME</label> <input type="text"
+				ng-model="bankDetail.bankName" required name="bankName" ng-disabled="isReadOnly" limit-to="255" ng-minlength="2" ng-maxlength="255">
+			<div ng-messages="pageInformation.bankName.$error">
+				<div ng-message="required">Please enter bank name</div>
+				<div ng-message="minlength">bank should be minimum 2 character</div>
+				<div ng-message="maxlength">bank should be maximum 255 character</div>
 			</div>
 			</md-input-container>
 		</div>
 		<div layout-gt-sm="row">
 			<md-input-container class="md-block" flex-gt-sm type="password">
-			<label class="input-filed-label">SUB MENU</label> <input type="text"
-				ng-model="page.submenu" required name="submenu"
+			<label class="input-filed-label">ACCOUNT NUMBER</label> <input type="text"
+				ng-model="bankDetail.accountNumber" required name="accountNumber"
 				ng-disabled="isReadOnly" limit-to="255" ng-minlength="2" ng-maxlength="255">
-			<div ng-messages="pageInformation.submenu.$error">
+			<div ng-messages="pageInformation.accountNumber.$error">
 				<div ng-message="required">Please enter Sub Menu</div>
 				<div ng-message="minlength">Sub Menu should be minimum 2 character</div>
 				<div ng-message="maxlength">sub menu should be maximum 255 character</div>
@@ -37,10 +37,10 @@
 		</div>
 		<div layout-gt-sm="row">
 			<md-input-container class="md-block" flex-gt-sm>
-			<label class="input-filed-label">PAGE NAME</label> <input type="text"
-				ng-model="page.pageName" required name="pageName"
+			<label class="input-filed-label">BRANCH NAME</label> <input type="text"
+				ng-model="bankDetail.branchName" required name="branchName"
 				ng-disabled="isReadOnly" limit-to="255" ng-minlength="2" ng-maxlength="255">
-			<div ng-messages="pageInformation.pageName.$error">
+			<div ng-messages="pageInformation.branchName.$error">
 				<div ng-message="required">Please enter Page Name</div>
 				<div ng-message="minlength">Page Name should be minimum 2 character</div>
 				<div ng-message="maxlength">Page Name should be maximum 255 character</div>
@@ -50,9 +50,9 @@
 		<div layout-gt-sm="row">
 
 			<md-input-container class="md-block" flex-gt-sm>
-			<label class="input-filed-label">URL</label> <input type="text"
-				ng-model="page.url" required name="url" ng-disabled="isReadOnly" limit-to="255" ng-minlength="2" ng-maxlength="255">
-			<div ng-messages="pageInformation.url.$error">
+			<label class="input-filed-label">IFSC CODE</label> <input type="text"
+				ng-model="bankDetail.ifscCoe" required name="ifscCoe" ng-disabled="isReadOnly" limit-to="255" ng-minlength="2" ng-maxlength="255">
+			<div ng-messages="pageInformation.ifscCoe.$error">
 				<div ng-message="required">Please enter URL</div>
 				<div ng-message="minlength">URL should be minimum 2 character</div>
 				<div ng-message="maxlength">URL should be maximum 255 character</div>
