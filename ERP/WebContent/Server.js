@@ -6,7 +6,7 @@ var http = require("http");
 var url = require("url"),
     path = require("path"),
     fs = require("fs");
-	port = process.argv[2] || 3000;
+	port = process.argv[2] || 2000;
 	
 
 http.createServer(function(request, response) {
@@ -48,4 +48,4 @@ http.createServer(function(request, response) {
   });
 }).listen(parseInt(port, 10));
 
-console.log('Listening to port 3000');
+console.log('Listening to port 2000');

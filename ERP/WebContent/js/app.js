@@ -3,7 +3,7 @@ var erpApp = angular
 erpApp.config(function($locationProvider) {
 	$locationProvider.hashPrefix('');
 });
-erpApp.value('SERVER_URL', 'http://localhost:8085/DSCRM/');
+erpApp.value('SERVER_URL', 'http://192.168.2.105:8085/DSCRM/');
 
 
 
