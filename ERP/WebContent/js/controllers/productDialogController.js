@@ -20,13 +20,11 @@ erpApp.controller('productDialogCtrl', function($scope, $http, $mdDialog, $mdToa
 	$scope.saveProduct = function(ev) {
 	/*	utils.showProgressBar();*/
 		var data = {
+				productType: $scope.product.productType,
+				productValidity: $scope.product.productValidity,
 				name: $scope.product.name,
-				partNumber: $scope.product.partNumber,
-				clientpartnumber: $scope.product.clientpartnumber,
-				description: $scope.product.description,
-				minQuantity: $scope.product.minQuantity,
-				maxQuantity: $scope.product.maxQuantity,
-				design: 'Design will be added later on'
+				pricePerUnit: $scope.product.pricePerUnit,
+				description: $scope.product.description
 		};
 		var httpparams = {};
 		if ($scope.flag == 0) {

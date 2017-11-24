@@ -20,9 +20,9 @@ erpApp.controller('StatusDialogueController',
 
 	$scope.saveStatusInformation = function(ev) {
 		var data = {
-				name : $scope.status.name,
+				name : $scope.status.statusName,
 		        description : $scope.status.description,
-		        type : $scope.status.type
+		        type : $scope.status.statusType
 		};
 		var httpparams = {};
 		if ($scope.flag == 0) {

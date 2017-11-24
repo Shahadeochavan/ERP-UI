@@ -15,11 +15,11 @@
 
 		<div layout-gt-sm="row">
 			<md-input-container class="md-block" flex-gt-sm>
-			<label class="input-filed-label">NAME</label> <input type="text"
-				ng-model="product.name" value="product.name" required name="name"
+			<label class="input-filed-label">Product Type</label> <input type="text"
+				ng-model="product.productType" value="product.name" required name="productType"
 				ng-minlength="2" ng-disabled="isReadOnly" limit-to="255" ng-maxlength="255">
 			<div ng-messages="productInformation.name.$error">
-				<div ng-message="required">Please enter Product Name</div>
+				<div ng-message="required">Please enter Product type</div>
 				<div ng-message="minlength">Product Name should be minimum 2
 					character</div>
 				<div ng-message="maxlength">Product Name should be maximum 255
@@ -29,12 +29,11 @@
 		</div>
 		<div layout-gt-sm="row">
 			<md-input-container class="md-block" flex-gt-sm type="password">
-			<label class="input-filed-label">PART NUMBER</label> <input
-				type="text" ng-model="product.partNumber" value="product.partNumber"
-				required name="partNumber" ng-disabled="isReadOnly" ng-minlength="2" limit-to="255">
-			<div ng-messages="productInformation.partNumber.$error">
-				<div ng-message="required">Please enter Product Part Number</div>
-				<div ng-message="minlength">Part Number should be minimum 2 character</div>
+			<label class="input-filed-label">Product Validity</label> <input
+				type="text" ng-model="product.productValidity" value="product.partNumber"
+				required name="productValidity" ng-disabled="isReadOnly"  limit-to="255">
+			<div ng-messages="productInformation.productValidity.$error">
+				<div ng-message="required">Please enter Product Validity</div>
 			</div>
 			</md-input-container>
 		</div>
@@ -42,58 +41,43 @@
 		<div layout-gt-sm="row">
 
 			<md-input-container class="md-block" flex-gt-sm>
-			<label class="input-filed-label">CLIENT PART NUMBER*</label> <input
-				type="text" ng-model="product.clientpartnumber"
-				value="product.clientpartnumber" required name="clientpartnumber"
+			<label class="input-filed-label">Name</label> <input
+				type="text" ng-model="product.name"
+				value="product.clientpartnumber" required name="name"
 				ng-disabled="isReadOnly" ng-minlength="2" ng-maxlength="255" limit-to="255">
-			<div ng-messages="productInformation.clientpartnumber.$error">
-				<div ng-message="required">Please enter Client Part Number</div>
+			<div ng-messages="productInformation.name.$error">
+				<div ng-message="required">Please enter name</div>
 				<div ng-message="minlength">Part Number should be minimum 2 character</div>
 				<div ng-message="maxlength">Part Number should be maximum 255 character</div>
 			</div>
 			</md-input-container>
 		</div>
-		<div layout-gt-sm="row">
+			<div layout-gt-sm="row">
+
 			<md-input-container class="md-block" flex-gt-sm>
-			<label class="input-filed-label">DESCRIPTION</label> <input
+			<label class="input-filed-label">Price per Unit</label> <input
+				type="number" ng-model="product.pricePerUnit"
+				value="product.clientpartnumber" required name="ppu"
+				ng-disabled="isReadOnly">
+			<div ng-messages="productInformation.ppu.$error">
+				<div ng-message="required">Please Pricer</div>
+			</div>
+			</md-input-container>
+		</div>
+		<div layout-gt-sm="row">
+
+			<md-input-container class="md-block" flex-gt-sm>
+			<label class="input-filed-label">Name</label> <input
 				type="text" ng-model="product.description"
-				value="product.description" required name="description"
-				ng-minlength="4" ng-maxlength="255" ng-disabled="isReadOnly" limit-to="255">
+				 required name="description"
+				ng-disabled="isReadOnly" ng-minlength="2" ng-maxlength="255" limit-to="255">
 			<div ng-messages="productInformation.description.$error">
 				<div ng-message="required">Please enter Description</div>
-				<div ng-message="minlength">Product Description Should be
-					minimum 4 or maximum 255 character</div>
-				<div ng-message = "maxlength">Product Description should be minimum 4 or maximum 255 character</div>	
+				<div ng-message="minlength">Part Number should be minimum 2 character</div>
+				<div ng-message="maxlength">Part Number should be maximum 255 character</div>
 			</div>
 			</md-input-container>
 		</div>
-		<div layout-gt-sm="row">
-			<md-input-container class="md-block" flex-gt-sm>
-			<label class="input-filed-label">MINIMUM QUANTITY</label> <input
-				type="number" ng-model="product.minQuantity" required name="minQuantity" ng-disabled="isReadOnly"  min="0" max="9999">
-			<div ng-messages="productInformation.minQuantity.$error">
-				<div ng-message="required">Please enter Minimum Quantity</div>
-				<div ng-message="min">Invalid quantity!! Quantity should b 0 or greater than 0</div>
-				<div ng-message="max">Invalid quantity!! maximum Quantity 9999</div>
-			</div>
-			</md-input-container>
-		</div>
-		<div layout-gt-sm="row">
-			<md-input-container class="md-block" flex-gt-sm>
-			<label class="input-filed-label">MAXIMUM QUANTITY</label> <input
-				type="number" ng-model="product.maxQuantity"
-				value="product.maxQuantity" required name="maxQuantity" ng-disabled="isReadOnly" min="0" max="9999">
-			<div ng-messages="productInformation.maxQuantity.$error">
-				<div ng-message="required">Please enter Maximum Quantity</div>
-				<div ng-message="min">Invalid quantity!! Quantity should b 0 or greater than 0</div>
-				<div ng-message="max">Invalid quantity!! maximum Quantity 9999</div>
-			</div>
-			</md-input-container>
-		</div>
-
-		<input type="file" id="file1" name="file" multiple
-			ng-files="getTheFiles($files)" /> <input type="button"
-			ng-click="uploadFiles()" value="Upload" />
 	</md-dialog-content>
 
 	<md-dialog-actions layout="row"> <md-button

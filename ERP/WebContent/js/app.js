@@ -1,5 +1,5 @@
 var erpApp = angular
-		.module('ERPApp', [ 'ngRoute', 'ngMaterial', 'ngMessages', 'ngAnimate' , 'ngAria']);
+		.module('ERPApp', [ 'ngRoute', 'ngMaterial', 'ngMessages', 'ngAnimate']);
 erpApp.config(function($locationProvider) {
 	$locationProvider.hashPrefix('');
 });

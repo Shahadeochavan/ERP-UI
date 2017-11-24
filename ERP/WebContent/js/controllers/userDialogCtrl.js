@@ -74,8 +74,8 @@ erpApp
 							password : $scope.user.password,
 							firstName : $scope.user.firstName,
 							lastName : $scope.user.lastName,
-							mobile : $scope.user.mobile,
-							email : $scope.user.email,
+							mobile : $scope.user.mobileNo,
+							email : $scope.user.emailId,
 							usertype : $scope.user.usertype.id,
 							doj : $scope.user.doj,
 							dob : $scope.user.dob
@@ -167,9 +167,8 @@ erpApp
 						};
 						$http(httpparams).then(
 								function successCallback(response) {
-									$scope.data = response.data;
-									$scope.users = response.data;
-									console.log(response);
+									$scope.userTypeList = response.data.data;
+									console.log("$scope.userTypeList:",$scope.userTypeList);
 								}, function errorCallback(response) {
 									console.log("Error");
 								});

@@ -13,7 +13,7 @@
 		<div layout-gt-sm="row">
 			<md-input-container class="md-block" flex-gt-sm>
 			<label class="input-filed-label">NAME</label> <input type="text"
-				ng-model="status.name" value="status.name" required name="name"
+				ng-model="status.statusName" value="status.statusName" required name="name"
 				ng-minlength="2" ng-disabled="isReadOnly" ng-maxlength="255" limit-to="255">
 			<div ng-messages="statusInformation.name.$error">
 				<div ng-message="required">Please enter Status</div>
@@ -26,7 +26,7 @@
 		<div layout-gt-sm="row">
 			<md-input-container class="md-block" flex-gt-sm type="password">
 			<label class="input-filed-label">TYPE</label> <input type="text"
-				ng-model="status.type" value="status.type" required name="type"
+				ng-model="status.statusType" value="status.statusType" required name="type"
 				ng-disabled="isReadOnly" limit-to="255" ng-minlength="2" ng-maxlength="255">
 			<div ng-messages="statusInformation.type.$error">
 				<div ng-message="required">Please enter Status Type</div>
